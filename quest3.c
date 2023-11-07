@@ -2,35 +2,33 @@
 #include <string.h>
 
 int main() {
-    int A[4][4], B[4][4], result[4][4];
-    char operacao[5];
+    int matrixA[4][4], matrixB[4][4], resultMatrix[4][4];
+    char operation[5];
    
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            scanf("%d", &A[i][j]);
+            scanf("%d", &matrixA[i][j]);
         }
     }
     
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            scanf("%d", &B[i][j]);
+            scanf("%d", &matrixB[i][j]);
         }
     }
     
-    
-    scanf("%s", operacao);
-    
+    scanf("%s", operation);
     
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            if (strcmp(operacao, "soma") == 0) {
-                result[i][j] = A[i][j] + B[i][j];
-            } else if (strcmp(operacao, "sub") == 0) {
-                result[i][j] = A[i][j] - B[i][j];
-            } else if (strcmp(operacao, "mult") == 0) {
-                result[i][j] = 0;
+            if (strcmp(operation, "soma") == 0) {
+                resultMatrix[i][j] = matrixA[i][j] + matrixB[i][j];
+            } else if (strcmp(operation, "sub") == 0) {
+                resultMatrix[i][j] = matrixA[i][j] - matrixB[i][j];
+            } else if (strcmp(operation, "mult") == 0) {
+                resultMatrix[i][j] = 0;
                 for (int k = 0; k < 4; k++) {
-                    result[i][j] += A[i][k] * B[k][j];
+                    resultMatrix[i][j] += matrixA[i][k] * matrixB[k][j];
                 }
             }
         }
@@ -38,7 +36,7 @@ int main() {
     
     for (int i = 0; i < 4; i++) {
         for (int j = 0; j < 4; j++) {
-            printf("%4d", result[i][j]);
+            printf("%4d", resultMatrix[i][j]);
         }
         printf("\n");
     }

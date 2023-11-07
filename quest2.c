@@ -4,48 +4,48 @@
 #define NUM_PLAYERS 11
 
 struct Player {
-    char name[31];
-    char position;
-    int strength;
+    char playerName[31];
+    char playerPosition;
+    int playerStrength;
 };
 
-float calculateForce(struct Player players[]) {
+float calculateTeamForce(struct Player players[]) {
     int G = 0, L1 = 0, L2 = 0, Z1 = 0, Z2 = 0, V1 = 0, V2 = 0, M1 = 0, M2 = 0, A1 = 0, A2 = 0;
 
     for (int i = 0; i < NUM_PLAYERS; i++) {
-        switch (players[i].position) {
+        switch (players[i].playerPosition) {
             case 'G':
-                G = players[i].strength;
+                G = players[i].playerStrength;
                 break;
             case 'L':
                 if (L1 == 0)
-                    L1 = players[i].strength;
+                    L1 = players[i].playerStrength;
                 else
-                    L2 = players[i].strength;
+                    L2 = players[i].playerStrength;
                 break;
             case 'Z':
                 if (Z1 == 0)
-                    Z1 = players[i].strength;
+                    Z1 = players[i].playerStrength;
                 else
-                    Z2 = players[i].strength;
+                    Z2 = players[i].playerStrength;
                 break;
             case 'V':
                 if (V1 == 0)
-                    V1 = players[i].strength;
+                    V1 = players[i].playerStrength;
                 else
-                    V2 = players[i].strength;
+                    V2 = players[i].playerStrength;
                 break;
             case 'M':
                 if (M1 == 0)
-                    M1 = players[i].strength;
+                    M1 = players[i].playerStrength;
                 else
-                    M2 = players[i].strength;
+                    M2 = players[i].playerStrength;
                 break;
             case 'A':
                 if (A1 == 0)
-                    A1 = players[i].strength;
+                    A1 = players[i].playerStrength;
                 else
-                    A2 = players[i].strength;
+                    A2 = players[i].playerStrength;
                 break;
         }
     }
@@ -54,36 +54,36 @@ float calculateForce(struct Player players[]) {
 }
 
 int main() {
-    struct Player team1[NUM_PLAYERS], team2[NUM_PLAYERS];
-    char teamName1[31], teamName2[31];
+    struct Player teamOne[NUM_PLAYERS], teamTwo[NUM_PLAYERS];
+    char teamNameOne[31], teamNameTwo[31];
 
     // Lendo os dados do primeiro time
-    fgets(teamName1, 31, stdin);
-    teamName1[strcspn(teamName1, "\n")] = 0; // Remover o caractere de nova linha, se presente
+    fgets(teamNameOne, 31, stdin);
+    teamNameOne[strcspn(teamNameOne, "\n")] = 0; // Remover o caractere de nova linha, se presente
     for (int i = 0; i < NUM_PLAYERS; i++) {
-        scanf("%[^;];%c;%d\n", team1[i].name, &team1[i].position, &team1[i].strength);
+        scanf("%[^;];%c;%d\n", teamOne[i].playerName, &teamOne[i].playerPosition, &teamOne[i].playerStrength);
     }
 
     // Lendo os dados do segundo time
-    fgets(teamName2, 31, stdin);
-    teamName2[strcspn(teamName2, "\n")] = 0; // Remover o caractere de nova linha, se presente
+    fgets(teamNameTwo, 31, stdin);
+    teamNameTwo[strcspn(teamNameTwo, "\n")] = 0; // Remover o caractere de nova linha, se presente
     for (int i = 0; i < NUM_PLAYERS; i++) {
-        scanf("%[^;];%c;%d\n", team2[i].name, &team2[i].position, &team2[i].strength);
+        scanf("%[^;];%c;%d\n", teamTwo[i].playerName, &teamTwo[i].playerPosition, &teamTwo[i].playerStrength);
     }
 
     // Calculando as forças de cada time
-    float force1 = calculateForce(team1);
-    float force2 = calculateForce(team2);
+    float forceOne = calculateTeamForce(teamOne);
+    float forceTwo = calculateTeamForce(teamTwo);
 
     // Exibindo os resultados
-    printf("%s: %.2f de forca\n", teamName1, force1);
-    printf("%s: %.2f de forca\n", teamName2, force2);
+    printf("%s: %.2f de forca\n", teamNameOne, forceOne);
+    printf("%s: %.2f de forca\n", teamNameTwo, forceTwo);
 
     // Comparando as forças e exibindo o time mais forte
-    if (force1 > force2) {
-        printf("%s eh mais forte\n", teamName1);
-    } else if (force2 > force1) {
-        printf("%s eh mais forte\n", teamName2);
+    if (forceOne > forceTwo) {
+        printf("%s eh mais forte\n", teamNameOne);
+    } else if (forceTwo > forceOne) {
+        printf("%s eh mais forte\n", teamNameTwo);
     } else {
         printf("Os times sao igualmente fortes\n");
     }
